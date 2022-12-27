@@ -35,5 +35,6 @@ module HotwireSample
     config.generators.system_tests = nil
     config.time_zone = "Tokyo"
     config.i18n.default_locale = :ja
+    config.customlogger = Logger.new(Rails.root.join('log/custom.log'))
   end
 end
