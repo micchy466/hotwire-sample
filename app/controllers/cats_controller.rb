@@ -35,7 +35,6 @@ class CatsController < ApplicationController
   # PATCH/PUT /cats/1
   def update
     if @cat.update(cat_params)
-      @clog.info @cat.inspect
       flash.now.notice = "#{@cat.name}を更新しました。"
     else
       render :edit, status: :unprocessable_entity
@@ -45,7 +44,7 @@ class CatsController < ApplicationController
   # DELETE /cats/1
   def destroy
     @cat.destroy
-    redirect_to cats_url, notice: "ねこを削除しました。"
+    flash.now.notice = "#{@cat.name}を削除しました。"
   end
 
   private
