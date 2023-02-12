@@ -64,3 +64,4 @@ end
 gem "kaminari"
 gem "ransack"
 gem "bootstrap_form"
+gem "hotwire-livereload"
