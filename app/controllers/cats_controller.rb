@@ -26,7 +26,6 @@ class CatsController < ApplicationController
     @cat = Cat.new(cat_params)
 
     if @cat.save
-      @cat.broadcast_prepend_to("cats")
       flash.now.notice = "#{@cat.name}を登録しました。"
     else
       render :new, status: :unprocessable_entity
@@ -36,7 +35,6 @@ class CatsController < ApplicationController
   # PATCH/PUT /cats/1
   def update
     if @cat.update(cat_params)
-      @cat.broadcast_replace_to("cats")
       flash.now.notice = "#{@cat.name}を更新しました。"
     else
       render :edit, status: :unprocessable_entity
@@ -47,8 +45,6 @@ class CatsController < ApplicationController
   def destroy
     @cat.destroy
     @clog.info @cat.inspect
-    # redirect_to cats_url, notice: "ねこを削除しました。"
-    @cat.broadcast_remove_to("cats")
     flash.now.notice = "#{@cat.name}を削除しました。"
   end
 
